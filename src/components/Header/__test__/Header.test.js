@@ -8,9 +8,37 @@ test("should render same text passed into title prop", () => {
   expect(headingElement).toBeInTheDocument();
 });
 
+// it("should render same text passed into title prop", () => {
+//   render(<Header />);
+//   const headingElement = screen.getByRole("heading"); /// heading demek h1 demek ya da h2-3-4-5-6 eger bu varsa demek ki testi gecti, Bu test fail olur eger 1 dden fazla h heading varsa
+
+//   expect(headingElement).toBeInTheDocument();
+// });
+
 it("should render same text passed into title prop", () => {
-  render(<Header />);
-  const headingElement = screen.getByRole("heading"); /// heading demek h1 demek ya da h2-3-4-5-6 eger bu varsa demek ki testi gecti
+  render(<Header title="My Header" />);
+  const headingElement = screen.getByRole("heading", { name: "My Header" }); /// heading demek h1 demek ya da h2-3-4-5-6 eger bu varsa demek ki testi gecti, heading var ama headinglerden sadece 1 tanesinin icinde My header yazmali, daha specific bir test
+
+  expect(headingElement).toBeInTheDocument();
+});
+
+it("should render same text passed into title prop", () => {
+  render(<Header title="My Header" />);
+  const headingElement = screen.getByTitle("Header"); //title attribute ekleyip o sekilde test etme
+
+  expect(headingElement).toBeInTheDocument();
+});
+it("should render same text passed into title prop", () => {
+  render(<Header title="My Header" />);
+  const headingElement = screen.getByTestId("header-2"); ///data-testId ile test etme
+
+  expect(headingElement).toBeInTheDocument();
+});
+
+///Find By
+it("should render same text passed into title prop", async () => {
+  render(<Header title="My Header" />);
+  const headingElement = await screen.findByText(/my header/i); //bu async await olmak zorunda
 
   expect(headingElement).toBeInTheDocument();
 });
