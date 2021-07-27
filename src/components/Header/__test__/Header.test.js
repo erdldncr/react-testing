@@ -42,3 +42,20 @@ it("should render same text passed into title prop", async () => {
 
   expect(headingElement).toBeInTheDocument();
 });
+//Qyery By
+
+it("should render same text passed into title prop", () => {
+  render(<Header title="My Header" />);
+  const headingElement = screen.queryByText(/dogs/i); //bu ters mantik ddog beklemyrum bu testte diyruz yoksa testi geceeck.
+
+  expect(headingElement).not.toBeInTheDocument();
+});
+
+///getAll
+
+it("should render same text passed into title prop", () => {
+  render(<Header title="My Header" />);
+  const headingElements = screen.getAllByRole("heading"); //all dedgim icin array gelecek gelen array de 2 eleman beklyrum Headder.js'e bakarsan 2 h tag li elemani gorebilirsin
+
+  expect(headingElements.length).toBe(2);
+});

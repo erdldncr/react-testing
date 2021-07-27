@@ -1,95 +1,46 @@
-import { render, screen } from '@testing-library/react';
-import TodoFooter from "../TodoFooter"
-import { BrowserRouter } from "react-router-dom"
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import TodoFooter from "../../TodoFooter/TodoFooter";
 
 const MockTodoFooter = ({ numberOfIncompleteTasks }) => {
-    return (
-        <BrowserRouter>
-          <TodoFooter 
-            numberOfIncompleteTasks={numberOfIncompleteTasks}
-          />
-        </BrowserRouter>
-    )
-}
+  return (
+    <BrowserRouter>
+      <TodoFooter numberOfIncompleteTasks={numberOfIncompleteTasks} />
+    </BrowserRouter>
+  );
+};
 
-describe("TodoFooter", () => {
-  it('should render the correct amount of incomplete tasks', () => {
-    render(
-        <MockTodoFooter 
-          numberOfIncompleteTasks={5}
-        />
-    );
-    const pElement = screen.getByText(/5 tasks left/i);
-    expect(pElement).toBeInTheDocument();
-  });
+test("should render the correct amount of incomplete tasks", () => {
+  render(<MockTodoFooter numberOfIncompleteTasks={5} />);
+  const paragraphElement = screen.getByText(/5 tasks left/i); /// text componentte gozukecek
 
-  it('should render "task" when the number of incomplete tasks is one', () => {
-    render(
-        <MockTodoFooter 
-          numberOfIncompleteTasks={1}
-        />
-    );
-    const pElement = screen.getByText(/1 task left/i);
-    expect(pElement).toBeInTheDocument();
-  });
-})
+  expect(paragraphElement).toBeInTheDocument();
+});
 
-// it('p element should be truthy when the number of incomplete tasks is one', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement).toBeTruthy();
-// });
+test("should render the 'task' when the number is one", () => {
+  render(<MockTodoFooter numberOfIncompleteTasks={1} />);
+  const paragraphElement = screen.getByText(/1 task left/i); /// text componentte gozukecek
 
-// it('"task" should be visible when the number of incomplete tasks is one', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement).toBeVisible();
-// });
+  expect(paragraphElement).toBeInTheDocument();
+});
 
-// it('should contain p tag with correct text', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement).toContainHTML('p');
-// });
+test("should render the 'task' when the number is one", () => {
+  render(<MockTodoFooter numberOfIncompleteTasks={1} />);
+  const paragraphElement = screen.getByText(/1 task left/i); /// text componentte gozukecek
 
-// it('should render correct text content', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement).toHaveTextContent("1 task left");
-// });
+  expect(paragraphElement).toBeVisible();
+});
 
-// it('should render correct text content', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement).not.toBeFalsy();
-// });
+test("should render the 'task' when the number is one", () => {
+  render(<MockTodoFooter numberOfIncompleteTasks={1} />);
+  const paragraphElement = screen.getByText(/1 task left/i); /// text componentte gozukecek
 
-// it('should render correct text content', () => {
-//   render(
-//       <MockTodoFooter 
-//         numberOfIncompleteTasks={1}
-//       />
-//   );
-//   const pElement = screen.getByText(/1 task left/i);
-//   expect(pElement.textContent).toBe("1 task left");
-// });
+  expect(paragraphElement).toContainHTML("p");
+});
+
+test("should render the 'task' when the number is one", () => {
+  render(<MockTodoFooter numberOfIncompleteTasks={1} />);
+  const paragraphElement = screen.getByText(/1 task left/i); /// text componentte gozukecek
+
+  expect(paragraphElement.innerHTML).toBe("1 task left");
+});
